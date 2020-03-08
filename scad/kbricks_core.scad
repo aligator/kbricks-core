@@ -867,17 +867,20 @@ module cube_s(support=false) {
 
 module prism_45deg() {
     difference() {
-        rotate([-135,0,0])
-        difference() {
-            rotate([135,0,0])
-            prism(24,24*sqrt(2),24/2*sqrt(2));
-            angles = [ [0,0,180],[0,90,180],[270,0,180],[270,0,90]];
-            for ( w = angles) {
-                slot(angle1 = w);
+        translate([0,0,-cube_size/2]) {
+            rotate([-135,0,0]) {
+                difference() {
+                    rotate([135,0,0])
+                    prism(24,24*sqrt(2),24/2*sqrt(2));
+                    angles = [ [0,0,180],[0,90,180],[270,0,180],[270,0,90]];
+                    for ( w = angles) {
+                        slot(angle1 = w);
+                    }
+                }
             }
         }
         scale([1,2,1])
-        slot(angle1=[270,0,0],distance=0);
+        slot(angle1=[270,0,0]);
     }
 }
 
